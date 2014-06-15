@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "glob": "^4.0.2",
+    "js-yaml": "^3.0.2",
     "underscore": "^1.6.0"
   }
 }

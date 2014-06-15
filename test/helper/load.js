@@ -20,7 +20,7 @@
     });
 
 
-    it.only('loads the file at the given path', function () {
+    it('loads the file at the given path', function () {
       var format = load(path.join(BASE_PATH, 'descriptor', 'base.js'));
       expect(format).to.be.an('object');
       expect(format.Test).to.be.defined;

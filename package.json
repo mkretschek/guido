@@ -33,6 +33,7 @@
     "sinon-chai": "^2.5.0"
   },
   "dependencies": {
+    "glob": "^4.0.2",
     "underscore": "^1.6.0"
   }
 }

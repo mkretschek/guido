@@ -11,7 +11,7 @@
 
   var guido;
 
-  describe.only('extend', function () {
+  describe('extend', function () {
 
     beforeEach(function () {
       guido = new Checker();

@@ -9,7 +9,7 @@
   var process = require('../../lib/helper/process');
 
 
-  describe.only('process() helper', function () {
+  describe('process() helper', function () {
     var fooProcessor = sinon.spy(function (guido, description, callback) {
       description.foo = true;
       callback(null, description);

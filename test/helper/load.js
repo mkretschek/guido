@@ -20,64 +20,90 @@
     });
 
 
-    it('returns an object', function () {
-      var format = load(path.join(BASE_PATH, 'base.js'));
-      expect(format).to.be.an('object');
+    it('is async', function (done) {
+      load(path.join(BASE_PATH, 'base.js'), done);
     });
 
 
-    it('returns an empty object if no file is found', function () {
-      var format = load('inexistent.path');
-      expect(format).to.eql({});
-    });
-
-
-    it('loads the file at the given path', function () {
-      var format = load(path.join(BASE_PATH, 'base.js'));
-      expect(format).to.be.an('object');
-      expect(format.Test).to.be.defined;
-      expect(format.Test).to.be.an('object');
-      expect(format.Test.type).to.equal('string');
-    });
-
-
-    it('loads all files at the paths in an array', function () {
-      var format = load([
-        path.join(BASE_PATH, 'load1.js'),
-        path.join(BASE_PATH, 'load2.js'),
-        path.join(BASE_PATH, 'load3.js')
-      ]);
-
-      expect(format).to.eql({
-        Load1 : true,
-        Load2 : true,
-        Load3 : true
+    it('passes the resulting object to the callback', function (done) {
+      load(path.join(BASE_PATH, 'base.js'), function (err, format) {
+        if (err) { return done(err); }
+        expect(format).to.be.an('object');
+        done();
       });
     });
 
 
-    it('loads all files at the paths passed to it', function () {
-      var format = load(
-        path.join(BASE_PATH, 'load1.js'),
-        path.join(BASE_PATH, 'load2.js'),
-        path.join(BASE_PATH, 'load3.js')
-      );
-
-      expect(format).to.eql({
-        Load1 : true,
-        Load2 : true,
-        Load3 : true
+    it('returns an empty object if no file is found', function (done) {
+      load('inexistent.path', function (err, format) {
+        if (err) { return done(err); }
+        expect(format).to.eql({});
+        done();
       });
     });
 
 
-    it('loads all files that match the given glob', function () {
-      var format = load(path.join(BASE_PATH, 'load*.js'));
+    it('loads the file at the given path', function (done) {
+      load(path.join(BASE_PATH, 'base.js'), function (err, format) {
+        if (err) { return done(err); }
+        expect(format).to.be.an('object');
+        expect(format.Test).to.be.defined;
+        expect(format.Test).to.be.an('object');
+        expect(format.Test.type).to.equal('string');
+        done();
+      });
+    });
 
-      expect(format).to.eql({
-        Load1 : true,
-        Load2 : true,
-        Load3 : true
+
+    it('loads all files at the paths in an array', function (done) {
+      load([
+        path.join(BASE_PATH, 'load1.js'),
+        path.join(BASE_PATH, 'load2.js'),
+        path.join(BASE_PATH, 'load3.js')
+      ], function (err, format) {
+        if (err) { return done(err); }
+
+        expect(format).to.eql({
+          Load1 : true,
+          Load2 : true,
+          Load3 : true
+        });
+
+        done();
+      });
+    });
+
+
+    it('loads all files at the paths passed to it', function (done) {
+      load(
+        path.join(BASE_PATH, 'load1.js'),
+        path.join(BASE_PATH, 'load2.js'),
+        path.join(BASE_PATH, 'load3.js'),
+        function (err, format) {
+          if (err) { return done(err); }
+
+          expect(format).to.eql({
+            Load1 : true,
+            Load2 : true,
+            Load3 : true
+          });
+
+          done();
+        });
+    });
+
+
+    it('loads all files that match the given glob', function (done) {
+      load(path.join(BASE_PATH, 'load*.js'), function (err, format) {
+        if (err) { return done(err); }
+
+        expect(format).to.eql({
+          Load1 : true,
+          Load2 : true,
+          Load3 : true
+        });
+
+        done();
       });
     });
   });

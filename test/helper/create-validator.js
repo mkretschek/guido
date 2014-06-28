@@ -42,7 +42,7 @@
   });
 
 
-  describe.only('createValidator() helper', function () {
+  describe('createValidator() helper', function () {
     it('is accessible', function () {
       expect(createValidator).to.be.defined;
     });

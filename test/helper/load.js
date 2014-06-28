@@ -6,7 +6,7 @@
 
   var load = require('../../lib/helper/load');
 
-  var BASE_PATH = path.join(__dirname, '..', 'descriptor');
+  var BASE_PATH = path.join(__dirname, 'description');
 
 
   describe('load() helper', function () {

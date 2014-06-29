@@ -22,6 +22,8 @@
 
 
     it('returns true for new Object()', function () {
+      // Avoid the warning about the object literal notation being prefered
+      // over the Object constructor
       /* jshint -W010 */
       expect(isPlainObject(new Object())).to.be.true;
     });
@@ -33,6 +35,8 @@
 
 
     it('returns false for arrays', function () {
+      // Avoid the warning about the array literal notation being prefered
+      // over the Array constructor
       /* jshint -W009 */
       expect(isPlainObject([])).to.be.false;
       expect(isPlainObject(new Array())).to.be.false;

@@ -1,0 +1,13 @@
+language: node_js
+addons:
+  code_climate:
+    repo_token: b006f8e8bebda573bb2b561fb4ee027d332b4db845d9f5941f75448d10f4d0ed
+node_js:
+  - "0.10"
+before_install:
+  - npm install -g grunt-cli
+after_script:
+  - NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/lcov.info | ./node_modules/codeclimate-test-reporter/bin/codeclimate.js
+  - rm -rf ./coverage

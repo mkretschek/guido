@@ -9,7 +9,7 @@
   var accept = require('../../lib/descriptor/accept');
 
 
-  describe.only('accept descriptor', function () {
+  describe('accept descriptor', function () {
     var guido;
 
     beforeEach(function () {
